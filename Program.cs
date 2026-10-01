@@ -1,5 +1,5 @@
 ﻿
-List<double> vegossz = new List<double>();
+List<int> vegossz = new List<int>();
 
 for (int i = 0; i < 4; i++)
 {
@@ -27,7 +27,22 @@ for (int i = 0; i < 4; i++)
     else if (napok >= 3) { kedvezmeny = 0.95; }
     else kedvezmeny = 1;
 
-    double vegosszeg = Math.Round(kedvezmeny * alapertek);
+    int vegosszeg = (int)kedvezmeny * alapertek;
     vegossz.Add(vegosszeg);
 }
+
+int teljesBevetel = 0;
+
+for (int i = 0; i<vegossz.LongCount(); i++)
+{
+    teljesBevetel += vegossz[i];
+}
+
+double atlag = teljesBevetel/vegossz.LongCount();
+
+string ertekeles;
+
+if (teljesBevetel >= 200000) ertekeles = "Kiemelkedő forgalmú nap!";
+else if (teljesBevetel >= 100000) ertekeles = "Átlagos forgalmú nap.";
+else ertekeles = "Gyenge forgalmú nap";
 
