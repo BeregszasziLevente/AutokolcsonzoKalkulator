@@ -1,15 +1,17 @@
 ﻿
-List<int> vegossz = new List<int>();
+List<double> vegossz = new List<double>();
 
 for (int i = 0; i < 4; i++)
 {
-    Console.Write("Bérlő neve: ");
+    Console.WriteLine($"\n{i + 1}. bérlés adatai: ");
+
+    Console.Write("\tBérlő neve: ");
     string nev=Console.ReadLine();
     
-    Console.Write("Kölcsönzött napok száma: ");
+    Console.Write("\tKölcsönzött napok száma: ");
     int napok = int.Parse(Console.ReadLine());
     
-    Console.Write("VIP tag-e? (igen/nem): ");
+    Console.Write("\tVIP tag-e? (igen/nem): ");
     string vipIn=Console.ReadLine();
     
     bool vip;
@@ -27,11 +29,18 @@ for (int i = 0; i < 4; i++)
     else if (napok >= 3) { kedvezmeny = 0.95; }
     else kedvezmeny = 1;
 
-    int vegosszeg = (int)kedvezmeny * alapertek;
+    double vegosszeg = kedvezmeny * (double)alapertek;
     vegossz.Add(vegosszeg);
 }
 
-int teljesBevetel = 0;
+Console.WriteLine("\nRögzített kölcsönzések adatai: ");
+
+for (int i =0; i < vegossz.LongCount(); i++)
+{
+    Console.WriteLine($"\t- {i + 1}. bérlés: {vegossz[i]} Ft");
+}
+
+double teljesBevetel = 0.0;
 
 for (int i = 0; i<vegossz.LongCount(); i++)
 {
@@ -44,5 +53,8 @@ string ertekeles;
 
 if (teljesBevetel >= 200000) ertekeles = "Kiemelkedő forgalmú nap!";
 else if (teljesBevetel >= 100000) ertekeles = "Átlagos forgalmú nap.";
-else ertekeles = "Gyenge forgalmú nap";
+else ertekeles = "Gyenge forgalmú nap.";
 
+Console.WriteLine($"\nNapi teljes bevétel: {Math.Round(teljesBevetel,0)} Ft");
+Console.WriteLine($"Átlagos kölcsönzési díj: {Math.Round(atlag,0)} Ft");
+Console.WriteLine($"Napi értékelés: {ertekeles}");
